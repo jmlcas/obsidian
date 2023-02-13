@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+  obsidian:
+    image: 'ghcr.io/sytone/obsidian-remote:latest'
+    container_name: obsidian-remote
+    restart: unless-stopped
+    ports:
+      - "8200:8080"
+      - "27123:27123" 
+    volumes:
+      - ./obsidian/vaults:/vaults
+      - ./obsidian/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - DOCKER_MODS=linuxserver/mods:universal-git
+
+      
